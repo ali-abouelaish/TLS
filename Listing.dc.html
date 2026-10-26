@@ -32,22 +32,37 @@ button,select{font-family:inherit}
   .ld{grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "aside" "body";row-gap:28px}
   .ld-aside{position:static}
 }
+/* Phones: the nav keeps the logo and Book a viewing (← All rooms covers the text links), the photo
+   controls shrink, and the closing Book a viewing button goes full width */
+@media (max-width:600px){
+  .tls-nav{gap:16px !important}
+  .tls-nav-link{display:none}
+  .tls-nav-cta{padding:10px 16px !important;font-size:14px !important}
+  .ld-main{padding-top:20px !important;padding-bottom:64px !important}
+  .ld-photo{border-radius:20px !important}
+  .ld-arrow{width:40px !important;height:40px !important;font-size:22px !important}
+  .ld-thumb{width:88px !important}
+  .ld{margin-top:28px !important}
+  .ld-aside{padding:22px !important}
+  .ld-cta-btn{flex:1 1 100% !important}
+  .tls-footer-note{margin-left:0 !important}
+}
 </style>
 </helmet>
 
 <div style="min-height:100vh;display:flex;flex-direction:column">
-  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:24px;padding:10px clamp(20px,5vw,72px);background:#1d2d63;color:#fff">
+  <nav class="tls-nav" style="position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:24px;padding:10px clamp(20px,5vw,72px);background:#1d2d63;color:#fff">
     <a href="Trusted%20Let.dc.html" style="display:flex;align-items:center;flex:none">
       <img src="assets/logo.jpg" alt="Trusted Let Solutions" style="height:clamp(40px,5vw,56px);width:auto;display:block;border-radius:8px">
     </a>
     <div style="display:flex;gap:clamp(14px,2vw,28px);margin-left:auto;align-items:center">
-      <a href="Trusted%20Let.dc.html#homes" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Rooms to let</a>
-      <a href="Trusted%20Let.dc.html#why" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Why us</a>
-      <button type="button" onClick="{{ openGeneral }}" style="border:0;border-radius:999px;padding:12px 22px;background:#e0ac36;color:#1b2340;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
+      <a href="Trusted%20Let.dc.html#homes" class="tls-nav-link" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Rooms to let</a>
+      <a href="Trusted%20Let.dc.html#why" class="tls-nav-link" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Why us</a>
+      <button type="button" class="tls-nav-cta" onClick="{{ openGeneral }}" style="border:0;border-radius:999px;padding:12px 22px;background:#e0ac36;color:#1b2340;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
     </div>
   </nav>
 
-  <main style="flex:1;padding:28px clamp(20px,5vw,72px) 96px;max-width:1400px;width:100%;margin:0 auto">
+  <main class="ld-main" style="flex:1;padding:28px clamp(20px,5vw,72px) 96px;max-width:1400px;width:100%;margin:0 auto">
     <a href="Trusted%20Let.dc.html#homes" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#454c66" style-hover="color:#1d2d63">← All rooms</a>
 
     <sc-if value="{{ notice }}" hint-placeholder-val="{{ false }}">
@@ -56,7 +71,7 @@ button,select{font-family:inherit}
 
     <sc-if value="{{ found }}" hint-placeholder-val="{{ true }}">
       <div style="margin-top:20px;display:flex;flex-direction:column;gap:12px">
-        <div style="position:relative;aspect-ratio:16/9;max-height:640px;width:100%;border-radius:28px;overflow:hidden;background:#efe7d8">
+        <div class="ld-photo" style="position:relative;aspect-ratio:16/9;max-height:640px;width:100%;border-radius:28px;overflow:hidden;background:#efe7d8">
           <sc-if value="{{ photoSrc }}" hint-placeholder-val="{{ false }}">
             <img src="{{ photoSrc }}" alt="{{ photoAlt }}" style="width:100%;height:100%;object-fit:cover;display:block">
           </sc-if>
@@ -70,15 +85,15 @@ button,select{font-family:inherit}
             </sc-if>
           </div>
           <sc-if value="{{ multiPhoto }}" hint-placeholder-val="{{ false }}">
-            <button type="button" onClick="{{ prevPhoto }}" aria-label="Previous photo" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;border-radius:50%;background:rgba(255,255,255,0.92);color:#1d2d63;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(27,35,64,0.2)" style-hover="background:#fff">‹</button>
-            <button type="button" onClick="{{ nextPhoto }}" aria-label="Next photo" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;border-radius:50%;background:rgba(255,255,255,0.92);color:#1d2d63;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(27,35,64,0.2)" style-hover="background:#fff">›</button>
+            <button type="button" onClick="{{ prevPhoto }}" aria-label="Previous photo" class="ld-arrow" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;border-radius:50%;background:rgba(255,255,255,0.92);color:#1d2d63;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(27,35,64,0.2)" style-hover="background:#fff">‹</button>
+            <button type="button" onClick="{{ nextPhoto }}" aria-label="Next photo" class="ld-arrow" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border:0;border-radius:50%;background:rgba(255,255,255,0.92);color:#1d2d63;font-size:26px;line-height:1;cursor:pointer;box-shadow:0 4px 12px rgba(27,35,64,0.2)" style-hover="background:#fff">›</button>
             <span style="position:absolute;right:18px;bottom:18px;padding:6px 12px;border-radius:999px;background:rgba(27,35,64,0.72);color:#fff;font-size:13px;font-weight:600;pointer-events:none">{{ photoCount }}</span>
           </sc-if>
         </div>
         <sc-if value="{{ multiPhoto }}" hint-placeholder-val="{{ false }}">
           <div style="display:flex;gap:10px;overflow-x:auto;padding:3px">
             <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="5">
-              <button type="button" onClick="{{ t.pick }}" aria-label="{{ t.label }}" aria-pressed="{{ t.on }}" style="flex:none;width:112px;aspect-ratio:4/3;padding:0;border:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#efe7d8;box-shadow:0 0 0 3px {{ t.ring }};opacity:{{ t.opacity }}" style-hover="opacity:1">
+              <button type="button" onClick="{{ t.pick }}" aria-label="{{ t.label }}" aria-pressed="{{ t.on }}" class="ld-thumb" style="flex:none;width:112px;aspect-ratio:4/3;padding:0;border:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#efe7d8;box-shadow:0 0 0 3px {{ t.ring }};opacity:{{ t.opacity }}" style-hover="opacity:1">
                 <img src="{{ t.src }}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
               </button>
             </sc-for>
@@ -178,7 +193,7 @@ button,select{font-family:inherit}
               <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.01em;margin:0">Like the look of it?</h2>
               <p style="font-size:16px;line-height:26px;color:#d9dcea;margin:6px 0 0">{{ bookIntro }}</p>
             </div>
-            <button type="button" onClick="{{ openProperty }}" style="flex:none;height:50px;padding:0 28px;border:0;border-radius:999px;background:#e0ac36;color:#1b2340;font-size:16px;font-weight:700;cursor:pointer;white-space:nowrap" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
+            <button type="button" class="ld-cta-btn" onClick="{{ openProperty }}" style="flex:none;height:50px;padding:0 28px;border:0;border-radius:999px;background:#e0ac36;color:#1b2340;font-size:16px;font-weight:700;cursor:pointer;white-space:nowrap" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
           </div>
         </div>
       </div>
@@ -187,7 +202,7 @@ button,select{font-family:inherit}
 
   <footer style="padding:0 clamp(20px,5vw,72px) 32px;display:flex;flex-wrap:wrap;gap:12px 32px;font-size:14px;color:#6b7190;max-width:1400px;width:100%;margin:0 auto">
     <span>© Trusted Let Solutions</span>
-    <span style="margin-left:auto">Members of a government-approved redress scheme</span>
+    <span class="tls-footer-note" style="margin-left:auto">Members of a government-approved redress scheme</span>
   </footer>
   <dc-import name="Enquiry" hint-size="0,0" open="{{ enquiryOpen }}" on-close="{{ closeEnquiry }}" property="{{ enqProperty }}" property-ref="{{ enqRef }}" property-url="{{ enqUrl }}" property-photo="{{ enqPhoto }}" spareroom-url="{{ enqSpareroom }}"></dc-import>
 </div>

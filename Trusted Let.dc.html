@@ -30,25 +30,43 @@ button,select{font-family:inherit}
 .tls-pin.is-selected{background:#e0ac36;color:#1b2340}
 .tls-cluster{position:absolute;left:0;top:0;transform:translate(-50%,-50%);min-width:42px;height:42px;padding:0 10px;display:grid;place-items:center;border:2px solid #fff;border-radius:999px;background:#1d2d63;color:#fff;font:700 15px/1 "Figtree",system-ui,sans-serif;cursor:pointer;box-shadow:0 0 0 5px rgba(224,172,54,0.45),0 4px 12px rgba(27,35,64,0.25)}
 .tls-cluster:hover{background:#2b3f80}
+/* Phones: the nav keeps the logo and Book a viewing (the hero buttons cover the text links), the filters
+   stretch to fill the bar, and the selected-pin card drops its photo so it covers less of the map */
+@media (max-width:600px){
+  .tls-nav{gap:16px !important}
+  .tls-nav-link{display:none}
+  .tls-nav-cta{padding:10px 16px !important;font-size:14px !important}
+  .tls-hero{padding-top:32px !important;padding-bottom:48px !important;gap:32px !important}
+  .tls-filters{padding:16px !important;gap:14px 12px !important;border-radius:20px !important}
+  .tls-filter{flex:1 1 140px}
+  .tls-filter select{width:100%;min-width:0 !important}
+  .tls-filter > div > select{flex:1}
+  .tls-filter-end{flex:1 1 100%;justify-content:space-between;margin-left:0 !important}
+  .tls-list{padding-top:28px !important;padding-bottom:64px !important}
+  .tls-map-frame{height:max(440px,calc(100svh - 160px)) !important}
+  .tls-sel-photo{display:none}
+  .tls-why{padding-top:64px !important;padding-bottom:64px !important;gap:40px !important}
+  .tls-footer-note{margin-left:0 !important}
+}
 </style>
 </helmet>
 
 <div style="min-height:100vh;display:flex;flex-direction:column">
-  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:24px;padding:10px clamp(20px,5vw,72px);background:#1d2d63;color:#fff">
+  <nav class="tls-nav" style="position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:24px;padding:10px clamp(20px,5vw,72px);background:#1d2d63;color:#fff">
     <a href="#top" style="display:flex;align-items:center;flex:none">
       <img src="assets/logo.jpg" alt="Trusted Let Solutions" style="height:clamp(40px,5vw,56px);width:auto;display:block;border-radius:8px">
     </a>
     <div style="display:flex;gap:clamp(14px,2vw,28px);margin-left:auto;align-items:center">
-      <a href="#homes" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Rooms to let</a>
-      <a href="#why" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Why us</a>
-      <button type="button" onClick="{{ openEnquiry }}" style="border:0;border-radius:999px;padding:12px 22px;background:#e0ac36;color:#1b2340;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
+      <a href="#homes" class="tls-nav-link" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Rooms to let</a>
+      <a href="#why" class="tls-nav-link" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Why us</a>
+      <button type="button" class="tls-nav-cta" onClick="{{ openEnquiry }}" style="border:0;border-radius:999px;padding:12px 22px;background:#e0ac36;color:#1b2340;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
     </div>
   </nav>
 
-  <section id="top" style="padding:56px clamp(20px,5vw,72px) 64px;max-width:1400px;width:100%;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:center">
+  <section id="top" class="tls-hero" style="padding:56px clamp(20px,5vw,72px) 64px;max-width:1400px;width:100%;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:center">
     <div>
       <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:#fbf1d9;color:#7a5a12;font-size:14px;font-weight:600;white-space:nowrap">Lettings across London</span>
-      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(42px,5.6vw,76px);line-height:1.02;letter-spacing:-0.025em;margin:20px 0 0;color:#1d2d63;max-width:14ch">Find a home you'll be happy to come back to.</h1>
+      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(36px,5.6vw,76px);line-height:1.02;letter-spacing:-0.025em;margin:20px 0 0;color:#1d2d63;max-width:14ch">Find a home you'll be happy to come back to.</h1>
       <p style="font-size:18px;line-height:30px;max-width:48ch;margin:24px 0 0;color:#454c66">Every property is inspected, referenced and fully compliant before it is listed. Browse what's available now, or switch to the map to search by area.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
         <a href="#homes" style="display:inline-flex;align-items:center;border-radius:999px;padding:14px 26px;background:#1d2d63;color:#fff;font-weight:700;white-space:nowrap;flex:none" style-hover="background:#2b3f80;color:#fff">Browse rooms</a>
@@ -65,8 +83,8 @@ button,select{font-family:inherit}
   </section>
 
   <div id="homes" style="padding:0 clamp(20px,5vw,72px)">
-    <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:end;gap:16px 20px;padding:20px 24px;border-radius:24px;background:#fff;box-shadow:0 2px 12px rgba(27,35,64,0.06)">
-      <div style="display:flex;flex-direction:column;gap:6px">
+    <div class="tls-filters" style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:end;gap:16px 20px;padding:20px 24px;border-radius:24px;background:#fff;box-shadow:0 2px 12px rgba(27,35,64,0.06)">
+      <div class="tls-filter" style="display:flex;flex-direction:column;gap:6px">
         <label style="font-size:13px;font-weight:600;color:#6b7190">Budget (pcm)</label>
         <div style="display:flex;gap:8px;align-items:center">
           <select value="{{ minPrice }}" onChange="{{ setMin }}" aria-label="Minimum budget per month" style="min-width:110px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">
@@ -92,7 +110,7 @@ button,select{font-family:inherit}
           </select>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="tls-filter" style="display:flex;flex-direction:column;gap:6px">
         <label style="font-size:13px;font-weight:600;color:#6b7190">Rooms available</label>
         <div style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#f3efe6">
           <sc-for list="{{ roomOpts }}" as="o" hint-placeholder-count="4">
@@ -100,11 +118,11 @@ button,select{font-family:inherit}
           </sc-for>
         </div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="tls-filter" style="display:flex;flex-direction:column;gap:6px">
         <label style="font-size:13px;font-weight:600;color:#6b7190">Property type</label>
         <select value="{{ type }}" onChange="{{ setType }}" aria-label="Property type" style="min-width:130px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">{{ typeOptions }}</select>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="tls-filter" style="display:flex;flex-direction:column;gap:6px">
         <label style="font-size:13px;font-weight:600;color:#6b7190">Available</label>
         <select value="{{ avail }}" onChange="{{ setAvail }}" style="min-width:140px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">
           <option value="any">Any date</option>
@@ -113,7 +131,7 @@ button,select{font-family:inherit}
           <option value="2027-01-01">By 1 Jan</option>
         </select>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px">
+      <div class="tls-filter" style="display:flex;flex-direction:column;gap:6px">
         <label style="font-size:13px;font-weight:600;color:#6b7190">Must have</label>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <sc-for list="{{ toggles }}" as="t" hint-placeholder-count="3">
@@ -122,7 +140,7 @@ button,select{font-family:inherit}
         </div>
       </div>
       <sc-if value="{{ staff }}" hint-placeholder-val="{{ false }}">
-        <div style="display:flex;flex-direction:column;gap:6px">
+        <div class="tls-filter" style="display:flex;flex-direction:column;gap:6px">
           <label style="font-size:13px;font-weight:600;color:#6b7190">Landlord</label>
           <select value="{{ paying }}" onChange="{{ setPaying }}" aria-label="Landlord pays commission" style="min-width:140px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">
             <option value="any">Any</option>
@@ -131,7 +149,7 @@ button,select{font-family:inherit}
           </select>
         </div>
       </sc-if>
-      <div style="margin-left:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <div class="tls-filter-end" style="margin-left:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
         <sc-if value="{{ filtersActive }}" hint-placeholder-val="{{ false }}">
           <button type="button" onClick="{{ clearFilters }}" style="height:36px;padding:0 2px;border:0;background:none;color:#454c66;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer" style-hover="color:#1d2d63">Clear filters</button>
         </sc-if>
@@ -145,8 +163,8 @@ button,select{font-family:inherit}
   </div>
 
   <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
-    <section style="padding:40px clamp(20px,5vw,72px) 96px;max-width:1400px;width:100%;margin:0 auto">
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:32px 28px">
+    <section class="tls-list" style="padding:40px clamp(20px,5vw,72px) 96px;max-width:1400px;width:100%;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:32px 28px">
         <sc-for list="{{ results }}" as="p" hint-placeholder-count="6">
           <article style="display:flex;flex-direction:column;border-radius:24px;background:#fff;overflow:hidden;box-shadow:0 2px 12px rgba(27,35,64,0.06);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 32px rgba(27,35,64,0.12)">
             <div style="position:relative;aspect-ratio:4/3;background:#efe7d8">
@@ -199,14 +217,14 @@ button,select{font-family:inherit}
 
   <sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
     <section style="padding:24px clamp(20px,5vw,72px) 96px;max-width:1400px;width:100%;margin:0 auto">
-      <div style="position:relative;height:max(560px,calc(100vh - 220px));border-radius:28px;overflow:hidden;background:#eee8dc;isolation:isolate">
+      <div class="tls-map-frame" style="position:relative;height:max(560px,calc(100vh - 220px));border-radius:28px;overflow:hidden;background:#eee8dc;isolation:isolate">
         <div id="listings-map" class="tls-map" style="position:absolute;inset:0;z-index:0"></div>
         <sc-if value="{{ mapNotice }}" hint-placeholder-val="{{ false }}">
           <p style="position:absolute;left:50%;top:50%;z-index:5;transform:translate(-50%,-50%);width:max-content;max-width:calc(100% - 40px);margin:0;padding:16px 22px;border-radius:18px;background:#fff;font-size:16px;text-align:center;pointer-events:none;box-shadow:0 8px 24px rgba(27,35,64,0.14)">{{ mapNotice }}</p>
         </sc-if>
         <sc-if value="{{ hasSelected }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;left:16px;top:16px;z-index:10;width:min(340px,calc(100% - 32px));border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 20px 48px rgba(27,35,64,0.22)">
-            <div style="position:relative;aspect-ratio:16/9;background:#efe7d8">
+            <div class="tls-sel-photo" style="position:relative;aspect-ratio:16/9;background:#efe7d8">
               <image-slot id="{{ sel.slotId }}" src="{{ sel.photo }}" shape="rect" placeholder="Property photo"></image-slot>
             </div>
             <div style="padding:16px 20px 20px">
@@ -244,14 +262,14 @@ button,select{font-family:inherit}
   </sc-if>
 
   <section id="why" style="background:#fff">
-    <div style="padding:96px clamp(20px,5vw,72px);max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px;align-items:center">
+    <div class="tls-why" style="padding:96px clamp(20px,5vw,72px);max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px;align-items:center">
       <div style="position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:#efe7d8;max-height:620px">
         <image-slot id="why-photo" src="assets/keys-handover.jpg" shape="rect" placeholder="Photo: your team handing over keys"></image-slot>
       </div>
       <div>
         <span style="display:inline-flex;padding:6px 14px;border-radius:999px;background:#fbf1d9;color:#7a5a12;font-size:14px;font-weight:600">Why choose us</span>
         <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(32px,3.6vw,48px);line-height:1.08;letter-spacing:-0.02em;margin:18px 0 0;color:#1d2d63;max-width:18ch">Letting that feels looked after.</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px 32px;margin-top:40px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:28px 32px;margin-top:40px">
           <div style="display:flex;flex-direction:column;gap:8px">
             <span style="width:40px;height:40px;border-radius:12px;background:#1d2d63;color:#e0ac36;display:grid;place-items:center;font-weight:700">1</span>
             <h3 style="font-size:19px;font-weight:700;margin:8px 0 0">Every home checked</h3>
@@ -279,7 +297,7 @@ button,select{font-family:inherit}
 
   <footer style="padding:32px clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:12px 32px;font-size:14px;color:#6b7190;max-width:1400px;width:100%;margin:0 auto">
     <span>© Trusted Let Solutions</span>
-    <span style="margin-left:auto">Members of a government-approved redress scheme</span>
+    <span class="tls-footer-note" style="margin-left:auto">Members of a government-approved redress scheme</span>
   </footer>
   <dc-import name="Enquiry" hint-size="0,0" open="{{ enquiryOpen }}" on-close="{{ closeEnquiry }}"></dc-import>
 </div>
@@ -386,10 +404,11 @@ class Component extends DCLogic {
     }
   }
   // Select a pin and nudge the map so the card in the top-left corner doesn't cover it.
+  // On phones the card has no photo (see the 600px media query), so it is shorter.
   selectPin(h) {
     this.setState({ selected: h.id });
-    const wide = this.map.getSize().x > 700;
-    this.map.panInside([h.lat, h.lng], { paddingTopLeft: wide ? [380, 60] : [40, 420], paddingBottomRight: [40, 40] });
+    const wide = this.map.getSize().x > 700, phone = matchMedia('(max-width:600px)').matches;
+    this.map.panInside([h.lat, h.lng], { paddingTopLeft: wide ? [380, 60] : [40, phone ? 260 : 420], paddingBottomRight: [40, 40] });
   }
 
   filtered() {
