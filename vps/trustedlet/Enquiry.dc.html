@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enquiry form · Trusted Let Solutions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div onMouseDown="{{ backdropDown }}" onClick="{{ backdropClick }}" style="position:fixed;inset:0;z-index:1000;display:flex;justify-content:center;align-items:flex-start;overflow-y:auto;padding:clamp(16px,6vh,72px) 16px;background:rgba(27,35,64,0.55)">
+    <div data-enq-dialog="" role="dialog" aria-modal="true" aria-labelledby="enq-title" style="position:relative;width:min(100%,640px);border-radius:28px;background:#fff;color:#1b2340;padding:clamp(22px,4vw,36px);box-shadow:0 24px 64px rgba(27,35,64,0.3)">
+      <button type="button" onClick="{{ close }}" aria-label="Close" style="position:absolute;top:16px;right:16px;width:40px;height:40px;border:0;border-radius:50%;background:#f3efe6;color:#1b2340;font-size:22px;line-height:1;cursor:pointer" style-hover="background:#e9e3d6">×</button>
+
+      <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="padding-right:48px">
+          <span style="width:48px;height:48px;border-radius:50%;background:#e0ac36;color:#1b2340;display:grid;place-items:center;font-size:24px;font-weight:700">✓</span>
+          <h2 id="enq-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,3vw,32px);letter-spacing:-0.02em;line-height:1.1;margin:18px 0 0;color:#1d2d63">{{ sentTitle }}</h2>
+          <p style="font-size:16px;line-height:26px;margin:8px 0 0;color:#454c66">{{ sentText }}</p>
+          <button type="button" onClick="{{ close }}" style="margin-top:24px;height:48px;padding:0 28px;border:0;border-radius:999px;background:#1d2d63;color:#fff;font-size:15px;font-weight:700;cursor:pointer" style-hover="background:#2b3f80">Done</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ !sent }}" hint-placeholder-val="{{ true }}">
+        <h2 id="enq-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(26px,3vw,32px);letter-spacing:-0.02em;line-height:1.1;margin:0;padding-right:48px;color:#1d2d63">Book a viewing</h2>
+        <p style="font-size:16px;line-height:26px;margin:8px 0 0;color:#454c66">{{ intro }}</p>
+
+        <sc-if value="{{ property }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;gap:14px;align-items:center;margin-top:20px;padding:12px;border-radius:18px;background:#faf6ef">
+            <sc-if value="{{ propertyPhoto }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ propertyPhoto }}" alt="" style="flex:none;width:72px;height:72px;border-radius:12px;object-fit:cover;display:block">
+            </sc-if>
+            <div style="min-width:0">
+              <span style="display:block;font-weight:700;line-height:1.35;color:#1d2d63;overflow-wrap:anywhere">{{ property }}</span>
+              <span style="display:flex;flex-wrap:wrap;gap:2px 14px;margin-top:4px;font-size:14px;color:#6b7190">
+                <sc-if value="{{ refLabel }}" hint-placeholder-val="{{ false }}">
+                  <span>{{ refLabel }}</span>
+                </sc-if>
+                <sc-if value="{{ spareroomUrl }}" hint-placeholder-val="{{ false }}">
+                  <a href="{{ spareroomUrl }}" target="_blank" rel="noopener" style="font-weight:600;color:#454c66" style-hover="color:#1d2d63">View on SpareRoom ↗</a>
+                </sc-if>
+              </span>
+            </div>
+          </div>
+        </sc-if>
+
+        <form onSubmit="{{ submit }}" style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;margin-top:22px">
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Name
+            <input name="name" data-enq-autofocus="" required="{{ true }}" sc-camel-auto-complete="name" sc-camel-max-length="120" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Email
+            <input name="email" type="email" sc-camel-auto-complete="email" sc-camel-max-length="200" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Phone
+            <input name="phone" type="tel" sc-camel-auto-complete="tel" sc-camel-max-length="40" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
+          </label>
+          <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Ideal move-in date (optional)
+            <input name="move_in_date" type="date" min="{{ today }}" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
+          </label>
+          <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Message
+            <textarea name="message" rows="4" sc-camel-default-value="{{ defaultMessage }}" placeholder="{{ messageHint }}" sc-camel-max-length="4000" style="min-height:112px;padding:12px 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400;line-height:1.5;resize:vertical"></textarea>
+          </label>
+          <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden">
+            <label>Leave this empty <input name="website" sc-camel-tab-index="-1" sc-camel-auto-complete="off"></label>
+          </div>
+          <sc-if value="{{ error }}" hint-placeholder-val="{{ false }}">
+            <p role="alert" style="grid-column:1/-1;margin:0;padding:12px 16px;border-radius:12px;background:#fdecea;color:#8a1c12;font-size:15px">{{ error }}</p>
+          </sc-if>
+          <button type="submit" disabled="{{ sending }}" style="grid-column:1/-1;height:52px;border:0;border-radius:999px;background:#e0ac36;color:#1b2340;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#ebc161" style-active="background:#c99526">{{ submitLabel }}</button>
+          <p style="grid-column:1/-1;margin:-4px 0 0;font-size:13px;color:#6b7190">We'll only use these details to reply to your enquiry. Please give an email address or a phone number.</p>
+        </form>
+      </sc-if>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// "Book a viewing" popup. Props: open, on-close, and for a listing: property (title), property-ref,
+// property-url (our listing page), property-photo and spareroom-url. Without property it is a general enquiry.
+const PHONE = '020 0000 0000', EMAIL = 'hello@trustedlet.co.uk';
+const TODAY = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+const fmtDate = d => new Date(d + 'T00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const FOCUSABLE = '[data-enq-dialog] :is(a[href], button, input, textarea):not([disabled]):not([tabindex="-1"])';
+
+// Harbor Ops Leads key for this website (Leads → Settings → Website enquiries → Connect a website,
+// "Developer API" tab). It can only add enquiries, so it is safe in page code. While it is empty,
+// enquiries open in the visitor's email app instead.
+const LEADS_KEY = '';
+const LEADS_URL = 'https://harborops.co.uk/api/public/leads';
+
+function sendLead(lead, property) {
+  if (!LEADS_KEY) return emailLead(lead, property);
+  const abort = new AbortController(), timer = setTimeout(() => abort.abort(), 15000);
+  return fetch(LEADS_URL, {
+    method: 'POST', signal: abort.signal,
+    headers: { Authorization: 'Bearer ' + LEADS_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(lead)
+  }).then(async r => {
+    if (r.ok) return { via: 'harbor' }; // 201 created, 200 already received (a retry with the same external_id)
+    const body = await r.json().catch(() => ({}));
+    throw new Error('Harbor Ops leads: HTTP ' + r.status + ' ' + (body.message || body.error || ''));
+  }).finally(() => clearTimeout(timer));
+}
+
+function emailLead(lead, property) {
+  const subject = property ? 'Viewing request: ' + property : 'Website enquiry';
+  const body = [['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone], ['Link', lead.page_url], ['Message', lead.message]]
+    .filter(([, v]) => v).map(([label, v]) => label + ': ' + v).join('\n');
+  location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  return Promise.resolve({ via: 'email' });
+}
+
+const newId = () => 'tls-' + (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
+
+class Component extends DCLogic {
+  state = { status: 'idle', error: null, via: null, firstName: '' };
+  externalId = null; // kept until the enquiry is accepted, so pressing send again after an error can't duplicate it
+  returnFocus = null;
+  downOnBackdrop = false;
+
+  componentDidMount() { if (this.props.open) this.opened(); }
+  componentDidUpdate(prev) {
+    if (this.props.open && !prev.open) this.opened();
+    else if (!this.props.open && prev.open) this.closed();
+  }
+  componentWillUnmount() { if (this.props.open) this.closed(); }
+
+  // Called after the dialog is in the DOM, so the first field can take focus straight away.
+  opened() {
+    this.returnFocus = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', this.onKey);
+    const first = document.querySelector('[data-enq-autofocus]');
+    if (first) first.focus();
+  }
+  closed() {
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', this.onKey);
+    if (this.returnFocus && this.returnFocus.focus) this.returnFocus.focus();
+    this.externalId = null;
+    this.setState({ status: 'idle', error: null }); // next time it opens on a fresh form
+  }
+  close() { if (this.props.onClose) this.props.onClose(); }
+
+  // Escape closes; Tab stays inside the dialog.
+  onKey = e => {
+    if (e.key === 'Escape') return this.close();
+    if (e.key !== 'Tab') return;
+    const items = [...document.querySelectorAll(FOCUSABLE)];
+    if (!items.length) return;
+    const first = items[0], last = items[items.length - 1], at = document.activeElement;
+    if (!items.includes(at) || (e.shiftKey ? at === first : at === last)) {
+      e.preventDefault();
+      (e.shiftKey ? last : first).focus();
+    }
+  };
+
+  submit(e) {
+    e.preventDefault();
+    const form = new FormData(e.target), v = k => String(form.get(k) || '').trim(), p = this.props;
+    if (v('website')) return this.setState({ status: 'sent', via: null }); // hidden field: only bots fill it in
+    if (!v('email') && !v('phone')) return this.setState({ error: 'Please add an email address or a phone number so we can reply.' });
+    this.externalId = this.externalId || newId();
+    // Harbor Ops recognises name, email, phone and message; the rest goes in the message.
+    const about = p.property && ['Property: ' + p.property, p.propertyRef && 'Ref: ' + p.propertyRef, p.spareroomUrl && 'SpareRoom: ' + p.spareroomUrl]
+      .filter(Boolean).join('\n');
+    const lead = {
+      name: v('name'), email: v('email'), phone: v('phone'),
+      message: [v('message'), v('move_in_date') && 'Ideal move-in date: ' + fmtDate(v('move_in_date')), about].filter(Boolean).join('\n\n'),
+      page_url: p.propertyUrl || location.href,
+      property_ref: p.propertyRef || undefined,
+      external_id: this.externalId
+    };
+    this.setState({ status: 'sending', error: null });
+    sendLead(lead, p.property).then(
+      r => { this.externalId = null; this.setState({ status: 'sent', via: r.via, firstName: lead.name.split(/\s+/)[0] }); },
+      err => { console.error(err); this.setState({ status: 'idle', error: "Sorry, your enquiry didn't send. Please try again, or call us on " + PHONE + ' or email ' + EMAIL + '.' }); });
+  }
+
+  renderVals() {
+    const s = this.state, p = this.props, ref = /^spareroom:(\d+)$/.exec(p.propertyRef || '');
+    return {
+      open: !!p.open, sent: s.status === 'sent', sending: s.status === 'sending', error: s.error, today: TODAY,
+      close: () => this.close(), submit: e => this.submit(e),
+      backdropDown: e => { this.downOnBackdrop = e.target === e.currentTarget; },
+      backdropClick: e => { if (this.downOnBackdrop && e.target === e.currentTarget) this.close(); },
+      property: p.property || '', propertyPhoto: p.propertyPhoto || '', spareroomUrl: p.spareroomUrl || '',
+      refLabel: ref ? 'Ref ' + ref[1] : '',
+      intro: p.property ? "Tell us when suits you and we'll get back to you to confirm a time."
+        : "Tell us what you're looking for and when suits you, and we'll be in touch to arrange a viewing.",
+      defaultMessage: p.property ? "Hi, I'd like to book a viewing. Times that suit me: " : '',
+      messageHint: p.property ? '' : 'Area, budget, number of rooms, anything else we should know…',
+      submitLabel: s.status === 'sending' ? 'Sending…' : 'Request a viewing',
+      sentTitle: s.via === 'email' ? 'Nearly there' : 'Thanks' + (s.firstName ? ', ' + s.firstName : '') + '.',
+      sentText: s.via === 'email'
+        ? "Your email app should have opened with your enquiry filled in. Press send there and we'll reply soon. If nothing opened, email " + EMAIL + ' or call ' + PHONE + '.'
+        : "We've got your enquiry and will be in touch shortly."
+    };
+  }
+}
+</script>
+</body>
+</html>

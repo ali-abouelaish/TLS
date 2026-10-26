@@ -1,0 +1,21 @@
+# Trusted Let website (server.mjs). Installed by deploy/install.sh as /etc/systemd/system/trustedlet.service.
+# One process only: used Harbor Ops sign-in tokens are remembered in memory.
+[Unit]
+Description=Trusted Let website
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/trustedlet
+ExecStart=/usr/bin/node server.mjs
+Restart=always
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

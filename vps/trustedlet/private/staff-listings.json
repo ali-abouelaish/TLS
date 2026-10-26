@@ -1,0 +1,551 @@
+{
+  "generated_at": "2026-10-24T16:46:55.129Z",
+  "listings": {
+    "6b340438-1ffb-4809-b8ae-d47933ddceef": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18036774",
+      "ref": "spareroom:18036774"
+    },
+    "da84f414-66e4-4dc0-aade-d542e0dd392c": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18303491",
+      "ref": "spareroom:18303491"
+    },
+    "ad64e718-6da3-41e5-b785-924272784b0d": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=16570324",
+      "ref": "spareroom:16570324"
+    },
+    "b2b4971b-0c08-45df-bb98-4d5df31e3502": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18215470",
+      "ref": "spareroom:18215470"
+    },
+    "54893b76-ca67-40f2-9e2e-97bfcaa500ae": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17994622",
+      "ref": "spareroom:17994622"
+    },
+    "33cc9b8a-ac35-4097-8790-7d8f5e395189": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17930345",
+      "ref": "spareroom:17930345"
+    },
+    "9cf33e03-e13f-421e-98b9-29ca7de738df": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17187861",
+      "ref": "spareroom:17187861"
+    },
+    "ea55d987-1e5d-4416-880d-d908fb2eb5cc": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18464667",
+      "ref": "spareroom:18464667"
+    },
+    "1bd0b545-25fa-40c9-bd76-453a8b7339c4": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17486549",
+      "ref": "spareroom:17486549"
+    },
+    "3545b7b7-6307-4a33-aea4-ebd7d2c48dbd": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18468376",
+      "ref": "spareroom:18468376"
+    },
+    "1d8a8b7d-7008-4b91-aeaa-ece5781fbc2b": {
+      "landlordName": "Upper estates",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/befb1e47-1f0e-4f1c-9422-144fb168facb",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17994422",
+      "ref": "spareroom:17994422"
+    },
+    "744304bb-71e6-470d-8c97-23db922c22f0": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18431170",
+      "ref": "spareroom:18431170"
+    },
+    "5d2e9007-743f-447a-b838-7e2913f77592": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18466878",
+      "ref": "spareroom:18466878"
+    },
+    "32ac5434-d3a5-406d-b590-5efea562f375": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18412127",
+      "ref": "spareroom:18412127"
+    },
+    "fbdb9f88-9f6d-4c41-8270-72d029d063c2": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18422131",
+      "ref": "spareroom:18422131"
+    },
+    "20b66f81-bd0c-45d7-be28-f2885828e3d7": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18463224",
+      "ref": "spareroom:18463224"
+    },
+    "e59348eb-0eab-46c1-afcc-1d0f23fb4f40": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18402777",
+      "ref": "spareroom:18402777"
+    },
+    "0f1f3ee7-4f44-4e52-91d2-cc030b49d956": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18442400",
+      "ref": "spareroom:18442400"
+    },
+    "b7dbae51-74ce-4142-bd34-d6a0f5adf21c": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18469526",
+      "ref": "spareroom:18469526"
+    },
+    "3273c4bd-37fb-4f90-b279-26702e4e7854": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18460229",
+      "ref": "spareroom:18460229"
+    },
+    "78f200f2-02e0-41bb-ad7c-0a3491f0128b": {
+      "landlordName": "Globe homes",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/1a3b8dec-c7e1-4cc5-91fa-68c4f90d6a1b",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18450835",
+      "ref": "spareroom:18450835"
+    },
+    "d9515886-5897-4e19-af1d-c4b65d340abf": {
+      "landlordName": "Palmyra",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/6b375cc2-a6a4-4579-9550-69d426f6ed3a",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18442971",
+      "ref": "spareroom:18442971"
+    },
+    "51ee1ef8-1be1-4f79-893e-2c6e84aac6ab": {
+      "landlordName": "Palmyra",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/6b375cc2-a6a4-4579-9550-69d426f6ed3a",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18469730",
+      "ref": "spareroom:18469730"
+    },
+    "d62e07f4-97c9-4a09-ac8d-80da3da6c0f4": {
+      "landlordName": "Palmyra",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/6b375cc2-a6a4-4579-9550-69d426f6ed3a",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18427211",
+      "ref": "spareroom:18427211"
+    },
+    "59625650-f967-4e38-b9d2-8200c5f45fce": {
+      "landlordName": "Palmyra",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/6b375cc2-a6a4-4579-9550-69d426f6ed3a",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18456049",
+      "ref": "spareroom:18456049"
+    },
+    "5eef0fd3-c3bd-490e-8d9d-d94274e03583": {
+      "landlordName": "Palmyra",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/6b375cc2-a6a4-4579-9550-69d426f6ed3a",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18437135",
+      "ref": "spareroom:18437135"
+    },
+    "b7e10462-108a-4755-84d6-a80ec67ede51": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18462175",
+      "ref": "spareroom:18462175"
+    },
+    "bd1b1d75-7278-4152-b5c4-0c3db25206d0": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17126444",
+      "ref": "spareroom:17126444"
+    },
+    "7f52e433-508c-4d7c-a36b-7eaee33ba79d": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17517580",
+      "ref": "spareroom:17517580"
+    },
+    "d113a1ea-c11c-4245-bcab-b9f342d05382": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17881766",
+      "ref": "spareroom:17881766"
+    },
+    "58d0cb43-d602-4621-8d56-6ed52b37bc99": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17571875",
+      "ref": "spareroom:17571875"
+    },
+    "36b04b5d-845e-4337-a5df-86ca05bd1b4b": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18143693",
+      "ref": "spareroom:18143693"
+    },
+    "abef3139-5a69-4494-be91-e55361a9eb43": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=16524883",
+      "ref": "spareroom:16524883"
+    },
+    "0f2a0744-abff-4dab-b652-7ae4f3306833": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=16446130",
+      "ref": "spareroom:16446130"
+    },
+    "108732fe-b3c2-4c04-be9e-17534ab89381": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18135048",
+      "ref": "spareroom:18135048"
+    },
+    "c9b27fdd-a8e8-4657-a8e9-80193f66cda7": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18279644",
+      "ref": "spareroom:18279644"
+    },
+    "42ebc5ec-bba4-438b-b158-44d0c8be22a0": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18342872",
+      "ref": "spareroom:18342872"
+    },
+    "c3c21716-717f-4574-92b7-a6bc14e695a4": {
+      "landlordName": "Antonio- White House",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/cf26b2d3-6e16-4928-9aff-ad613499ba52",
+      "paying": false,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17742762",
+      "ref": "spareroom:17742762"
+    },
+    "5a49db8b-e3d3-4d5a-84eb-5e52eb89cead": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18460400",
+      "ref": "spareroom:18460400"
+    },
+    "3201e78a-cdf6-4fb3-8dc0-59319fd25c62": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18440055",
+      "ref": "spareroom:18440055"
+    },
+    "4faddb34-86eb-4efa-9faa-f1d0ad8031b7": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18462147",
+      "ref": "spareroom:18462147"
+    },
+    "eced993a-fc72-4839-935c-7cec4c7fce24": {
+      "landlordName": "Jessica",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/3c1e4f5e-fbec-49dc-9256-8118cbae9512",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18472865",
+      "ref": "spareroom:18472865"
+    },
+    "ad5639fb-be01-43bb-aad9-27b23f87f033": {
+      "landlordName": "Jessica",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/3c1e4f5e-fbec-49dc-9256-8118cbae9512",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18472856",
+      "ref": "spareroom:18472856"
+    },
+    "e4dc5522-697d-4734-bb62-1309ec489a70": {
+      "landlordName": "utku",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/17af1727-3b72-4dbb-89ae-8cbbfad4d918",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18468530",
+      "ref": "spareroom:18468530"
+    },
+    "c4cb592f-05a5-474a-b061-57e26e32a230": {
+      "landlordName": "utku",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/17af1727-3b72-4dbb-89ae-8cbbfad4d918",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18370106",
+      "ref": "spareroom:18370106"
+    },
+    "18140857-14fb-4a1d-9e96-f57125a89389": {
+      "landlordName": "utku",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/17af1727-3b72-4dbb-89ae-8cbbfad4d918",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18452682",
+      "ref": "spareroom:18452682"
+    },
+    "d6a66d83-eaf9-42b8-963a-8e84a654d1a3": {
+      "landlordName": "Jessica",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/3c1e4f5e-fbec-49dc-9256-8118cbae9512",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18467811",
+      "ref": "spareroom:18467811"
+    },
+    "46ec44a8-b309-4291-b257-27479b1e59bb": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18133384",
+      "ref": "spareroom:18133384"
+    },
+    "6c31a13b-5104-40a5-9e73-af7c5f8e702e": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17272497",
+      "ref": "spareroom:17272497"
+    },
+    "a2bb6d57-99a1-40dc-abf8-f232a26c038f": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18463580",
+      "ref": "spareroom:18463580"
+    },
+    "0ce2d83a-6cd6-4cda-a557-82ca1eca951a": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17501098",
+      "ref": "spareroom:17501098"
+    },
+    "310a1f33-6923-4a5e-8c33-8e173e3a0e75": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18459245",
+      "ref": "spareroom:18459245"
+    },
+    "dc617a09-05d3-4f38-9688-8eb86abeaeb3": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18429890",
+      "ref": "spareroom:18429890"
+    },
+    "25f45eb4-fc2f-49ab-8d45-935977aaf08a": {
+      "landlordName": "oscar",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/62c3cdcd-d37e-4be6-8a4e-3e2f25eb9e10",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18468670",
+      "ref": "spareroom:18468670"
+    },
+    "f55f6ca3-fa11-4cc6-8cfc-bb6bd4d35fa2": {
+      "landlordName": "Jessica",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/3c1e4f5e-fbec-49dc-9256-8118cbae9512",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18467776",
+      "ref": "spareroom:18467776"
+    },
+    "7021517c-4e93-4cf8-bedb-9c560f1014de": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": null,
+      "spareroomUrl": null,
+      "ref": "manual:7021517c-4e93-4cf8-bedb-9c560f1014de"
+    },
+    "b20c2deb-ad24-4f33-bfb6-271d1435d6bb": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18451346",
+      "ref": "spareroom:18451346"
+    },
+    "f894e730-b784-481e-8a3e-4bfb009aee97": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18468475",
+      "ref": "spareroom:18468475"
+    },
+    "23844010-b3e7-4ec7-b83a-2d65db747ab5": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18444130",
+      "ref": "spareroom:18444130"
+    },
+    "0d6b316e-35fd-44c6-816e-fed27a94b200": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18459598",
+      "ref": "spareroom:18459598"
+    },
+    "6a2d06aa-0b26-48e8-8e11-49f0171230e1": {
+      "landlordName": "Daiko",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/02a4371a-70b3-4550-b4d0-08938001f736",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18459306",
+      "ref": "spareroom:18459306"
+    },
+    "f642dfe8-4bd6-4c7b-a401-f0e2a32101be": {
+      "landlordName": "oscar",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/62c3cdcd-d37e-4be6-8a4e-3e2f25eb9e10",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17697501",
+      "ref": "spareroom:17697501"
+    },
+    "a6c214ac-dbdf-4082-b2ea-a839e23e3805": {
+      "landlordName": "oscar",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/62c3cdcd-d37e-4be6-8a4e-3e2f25eb9e10",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18465430",
+      "ref": "spareroom:18465430"
+    },
+    "0130cc0d-489f-49f5-99a4-27bca4059259": {
+      "landlordName": "oscar",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/62c3cdcd-d37e-4be6-8a4e-3e2f25eb9e10",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=16754935",
+      "ref": "spareroom:16754935"
+    },
+    "fd9d14c3-99e5-4215-b082-73c7a420b742": {
+      "landlordName": "Jessica",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/3c1e4f5e-fbec-49dc-9256-8118cbae9512",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18464857",
+      "ref": "spareroom:18464857"
+    },
+    "e9552630-05dd-4a13-9e6c-af3d184ed9e7": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17281867",
+      "ref": "spareroom:17281867"
+    },
+    "1c790f2f-5278-421f-a6d6-0308934623f5": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18294655",
+      "ref": "spareroom:18294655"
+    },
+    "e5356101-c7ca-4987-8f63-319261929962": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17868202",
+      "ref": "spareroom:17868202"
+    },
+    "2cbdf9c2-9fcc-466d-8474-2cb2c1d1c5cb": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18445763",
+      "ref": "spareroom:18445763"
+    },
+    "2d8cf270-15e1-4540-b5ec-4f2c8e7d915c": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18121946",
+      "ref": "spareroom:18121946"
+    },
+    "e71d7e32-870b-4463-ab18-37b50f1de10f": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17946605",
+      "ref": "spareroom:17946605"
+    },
+    "3624a2f3-722c-4adc-b0cd-4e9ccdfeaa2d": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18223329",
+      "ref": "spareroom:18223329"
+    },
+    "df43c6c3-fdbe-4a84-ac12-1eb1bfafdcbd": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18445942",
+      "ref": "spareroom:18445942"
+    },
+    "6982afa5-0f68-421f-aaff-e086f9b68de3": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17649331",
+      "ref": "spareroom:17649331"
+    },
+    "a966f360-b43e-4321-a154-6ce53e8b0ef3": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17283793",
+      "ref": "spareroom:17283793"
+    },
+    "eb67cb4e-9f1e-4550-9a03-c06955b99b48": {
+      "landlordName": "Dario",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/9d950e22-3dc8-4316-ad0c-214e5dc18a99",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=18266214",
+      "ref": "spareroom:18266214"
+    },
+    "d835f6b8-efd3-41bf-b7a2-ba14be584e54": {
+      "landlordName": "Kish",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/77ecedd1-a1c4-437b-85dd-61379f18a17d",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=11577259",
+      "ref": "spareroom:11577259"
+    },
+    "420dadce-2063-4915-b25f-16842d32d8e0": {
+      "landlordName": "Kish",
+      "landlordUrl": "https://trustedlet.harborops.co.uk/go/landlord/77ecedd1-a1c4-437b-85dd-61379f18a17d",
+      "paying": true,
+      "spareroomUrl": "https://www.spareroom.co.uk/flatshare/flatshare_detail.pl?flatshare_id=17800476",
+      "ref": "spareroom:17800476"
+    }
+  }
+}

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap">
+<script src="./image-slot.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" integrity="sha256-YU3qCpj/P06tdPBJGPax0bm6Q1wltfwjsho5TR4+TYc=" crossorigin="">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#faf6ef;color:#1b2340;font-family:"Figtree",system-ui,sans-serif;font-size:16px;line-height:1.55;text-wrap:pretty}
+a{color:#1b2340;text-decoration:none}
+a:hover{color:#b8841c}
+button,select{font-family:inherit}
+:focus-visible{outline:2px solid #e0ac36;outline-offset:2px}
+/* Leaflet map: softened OpenStreetMap tiles and price pins in the site's navy/gold */
+.tls-map{font-family:inherit;background:#eee8dc}
+.tls-map .leaflet-tile-pane{filter:saturate(0.55) brightness(1.03)}
+.tls-pin-wrap{background:none;border:0}
+.tls-pin{position:absolute;left:0;top:0;transform:translate(-50%,-100%);padding:8px 12px;border:2px solid #fff;border-radius:999px;background:#1d2d63;color:#fff;font:700 14px/1 "Figtree",system-ui,sans-serif;white-space:nowrap;cursor:pointer;box-shadow:0 4px 12px rgba(27,35,64,0.25)}
+.tls-pin:hover{background:#2b3f80}
+.tls-pin.is-selected{background:#e0ac36;color:#1b2340}
+.tls-cluster{position:absolute;left:0;top:0;transform:translate(-50%,-50%);min-width:42px;height:42px;padding:0 10px;display:grid;place-items:center;border:2px solid #fff;border-radius:999px;background:#1d2d63;color:#fff;font:700 15px/1 "Figtree",system-ui,sans-serif;cursor:pointer;box-shadow:0 0 0 5px rgba(224,172,54,0.45),0 4px 12px rgba(27,35,64,0.25)}
+.tls-cluster:hover{background:#2b3f80}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column">
+  <nav style="position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:24px;padding:10px clamp(20px,5vw,72px);background:#1d2d63;color:#fff">
+    <a href="#top" style="display:flex;align-items:center;flex:none">
+      <img src="assets/logo.jpg" alt="Trusted Let Solutions" style="height:clamp(40px,5vw,56px);width:auto;display:block;border-radius:8px">
+    </a>
+    <div style="display:flex;gap:clamp(14px,2vw,28px);margin-left:auto;align-items:center">
+      <a href="#homes" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Rooms to let</a>
+      <a href="#why" style="font-weight:600;color:#fff;white-space:nowrap" style-hover="color:#f2d68f">Why us</a>
+      <button type="button" onClick="{{ openEnquiry }}" style="border:0;border-radius:999px;padding:12px 22px;background:#e0ac36;color:#1b2340;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
+    </div>
+  </nav>
+
+  <section id="top" style="padding:56px clamp(20px,5vw,72px) 64px;max-width:1400px;width:100%;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:48px;align-items:center">
+    <div>
+      <span style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:#fbf1d9;color:#7a5a12;font-size:14px;font-weight:600;white-space:nowrap">Lettings across London</span>
+      <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(42px,5.6vw,76px);line-height:1.02;letter-spacing:-0.025em;margin:20px 0 0;color:#1d2d63;max-width:14ch">Find a home you'll be happy to come back to.</h1>
+      <p style="font-size:18px;line-height:30px;max-width:48ch;margin:24px 0 0;color:#454c66">Every property is inspected, referenced and fully compliant before it is listed. Browse what's available now, or switch to the map to search by area.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px">
+        <a href="#homes" style="display:inline-flex;align-items:center;border-radius:999px;padding:14px 26px;background:#1d2d63;color:#fff;font-weight:700;white-space:nowrap;flex:none" style-hover="background:#2b3f80;color:#fff">Browse rooms</a>
+        <a href="#homes" onClick="{{ goMap }}" style="display:inline-flex;align-items:center;border-radius:999px;padding:14px 26px;background:#fff;color:#1d2d63;font-weight:700;white-space:nowrap;flex:none;box-shadow:inset 0 0 0 1.5px #d9dcea" style-hover="box-shadow:inset 0 0 0 1.5px #1d2d63">Search on the map</a>
+      </div>
+    </div>
+    <div style="position:relative;aspect-ratio:5/4;border-radius:28px;overflow:hidden;background:#efe7d8">
+      <image-slot id="hero-photo" src="RG-Primrose-Hill-Camden_33.jpg" shape="rect" placeholder="Hero photo: a bright, lived-in London home"></image-slot>
+      <div style="position:absolute;left:20px;bottom:20px;display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:18px;background:#fff;box-shadow:0 8px 24px rgba(27,35,64,0.14);pointer-events:none">
+        <span style="width:10px;height:10px;border-radius:50%;background:#e0ac36"></span>
+        <span style="font-weight:600;font-size:15px;white-space:nowrap">{{ heroCount }}</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="homes" style="padding:0 clamp(20px,5vw,72px)">
+    <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:end;gap:16px 20px;padding:20px 24px;border-radius:24px;background:#fff;box-shadow:0 2px 12px rgba(27,35,64,0.06)">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <label style="font-size:13px;font-weight:600;color:#6b7190">Budget (pcm)</label>
+        <div style="display:flex;gap:8px;align-items:center">
+          <select value="{{ minPrice }}" onChange="{{ setMin }}" aria-label="Minimum budget per month" style="min-width:110px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">
+            <option value="0">No min</option>
+            <option value="600">£600</option>
+            <option value="700">£700</option>
+            <option value="800">£800</option>
+            <option value="900">£900</option>
+            <option value="1000">£1,000</option>
+            <option value="1200">£1,200</option>
+            <option value="1500">£1,500</option>
+          </select>
+          <span style="color:#6b7190">to</span>
+          <select value="{{ maxPrice }}" onChange="{{ setMax }}" aria-label="Maximum budget per month" style="min-width:110px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">
+            <option value="99999">No max</option>
+            <option value="700">£700</option>
+            <option value="800">£800</option>
+            <option value="900">£900</option>
+            <option value="1000">£1,000</option>
+            <option value="1200">£1,200</option>
+            <option value="1500">£1,500</option>
+            <option value="2000">£2,000</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <label style="font-size:13px;font-weight:600;color:#6b7190">Rooms available</label>
+        <div style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#f3efe6">
+          <sc-for list="{{ roomOpts }}" as="o" hint-placeholder-count="4">
+            <button type="button" aria-pressed="{{ o.pressed }}" onClick="{{ o.pick }}" style="height:36px;min-width:44px;padding:0 14px;border:0;border-radius:999px;font-size:15px;font-weight:600;cursor:pointer;background:{{ o.bg }};color:{{ o.fg }}">{{ o.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <label style="font-size:13px;font-weight:600;color:#6b7190">Property type</label>
+        <select value="{{ type }}" onChange="{{ setType }}" aria-label="Property type" style="min-width:130px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">{{ typeOptions }}</select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <label style="font-size:13px;font-weight:600;color:#6b7190">Available</label>
+        <select value="{{ avail }}" onChange="{{ setAvail }}" style="min-width:140px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">
+          <option value="any">Any date</option>
+          <option value="now">Now</option>
+          <option value="2026-12-01">By 1 Dec</option>
+          <option value="2027-01-01">By 1 Jan</option>
+        </select>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <label style="font-size:13px;font-weight:600;color:#6b7190">Must have</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ toggles }}" as="t" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{ t.pressed }}" onClick="{{ t.toggle }}" style="height:44px;padding:0 18px;border-radius:999px;font-size:15px;font-weight:600;cursor:pointer;white-space:nowrap;border:1.5px solid {{ t.border }};background:{{ t.bg }};color:#1b2340">{{ t.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <sc-if value="{{ staff }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <label style="font-size:13px;font-weight:600;color:#6b7190">Landlord</label>
+          <select value="{{ paying }}" onChange="{{ setPaying }}" aria-label="Landlord pays commission" style="min-width:140px;height:44px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font-size:15px">
+            <option value="any">Any</option>
+            <option value="yes">Paying</option>
+            <option value="no">Not paying</option>
+          </select>
+        </div>
+      </sc-if>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <sc-if value="{{ filtersActive }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ clearFilters }}" style="height:36px;padding:0 2px;border:0;background:none;color:#454c66;font-size:15px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer" style-hover="color:#1d2d63">Clear filters</button>
+        </sc-if>
+        <span style="font-size:15px;font-weight:600;color:#454c66;white-space:nowrap">{{ countLabel }}</span>
+        <div style="display:flex;gap:4px;padding:4px;border-radius:999px;background:#f3efe6">
+          <button type="button" aria-pressed="{{ isList }}" onClick="{{ goList }}" style="height:36px;padding:0 18px;border:0;border-radius:999px;font-size:15px;font-weight:600;cursor:pointer;background:{{ listSegBg }};color:{{ listSegFg }}">List</button>
+          <button type="button" aria-pressed="{{ isMap }}" onClick="{{ goMap }}" style="height:36px;padding:0 18px;border:0;border-radius:999px;font-size:15px;font-weight:600;cursor:pointer;background:{{ mapSegBg }};color:{{ mapSegFg }}">Map</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:40px clamp(20px,5vw,72px) 96px;max-width:1400px;width:100%;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:32px 28px">
+        <sc-for list="{{ results }}" as="p" hint-placeholder-count="6">
+          <article style="display:flex;flex-direction:column;border-radius:24px;background:#fff;overflow:hidden;box-shadow:0 2px 12px rgba(27,35,64,0.06);transition:transform .2s ease,box-shadow .2s ease" style-hover="transform:translateY(-3px);box-shadow:0 14px 32px rgba(27,35,64,0.12)">
+            <div style="position:relative;aspect-ratio:4/3;background:#efe7d8">
+              <image-slot id="{{ p.slotId }}" src="{{ p.photo }}" shape="rect" placeholder="Property photo"></image-slot>
+              <span style="position:absolute;top:14px;left:14px;padding:6px 12px;border-radius:999px;background:#fff;color:#1d2d63;font-size:13px;font-weight:700;white-space:nowrap;pointer-events:none">{{ p.status }}</span>
+              <sc-if value="{{ p.bills }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:14px;right:14px;padding:6px 12px;border-radius:999px;background:#e0ac36;color:#1b2340;font-size:13px;font-weight:700;white-space:nowrap;pointer-events:none">Bills incl.</span>
+              </sc-if>
+            </div>
+            <div style="padding:20px 22px 22px;display:flex;flex-direction:column;flex:1">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+                <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.01em;margin:0;color:#1d2d63;white-space:nowrap">{{ p.priceLabel }}</h2>
+                <span style="font-size:14px;font-weight:600;color:#7a5a12">{{ p.location }}</span>
+              </div>
+              <p style="font-size:17px;font-weight:600;margin:6px 0 0">{{ p.title }}</p>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+                <sc-if value="{{ p.roomsLabel }}" hint-placeholder-val="{{ true }}">
+                  <span style="padding:6px 12px;border-radius:999px;background:#eef1f8;color:#1d2d63;font-size:14px;font-weight:600">{{ p.roomsLabel }}</span>
+                </sc-if>
+                <sc-if value="{{ p.type }}" hint-placeholder-val="{{ true }}">
+                  <span style="padding:6px 12px;border-radius:999px;background:#eef1f8;color:#1d2d63;font-size:14px;font-weight:600">{{ p.type }}</span>
+                </sc-if>
+              </div>
+              <sc-if value="{{ p.staff }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:16px;padding-top:14px;border-top:1px dashed #e3e1da;font-size:14px">
+                  <sc-if value="{{ p.landlordUrl }}" hint-placeholder-val="{{ false }}">
+                    <a href="{{ p.landlordUrl }}" target="_blank" rel="noopener" title="Open this landlord in Harbor Ops" style="font-weight:700;color:#1d2d63;overflow-wrap:anywhere" style-hover="color:#b8841c">{{ p.landlordLabel }}</a>
+                  </sc-if>
+                  <sc-if value="{{ p.noLandlord }}" hint-placeholder-val="{{ false }}">
+                    <span style="color:#6b7190">No landlord linked</span>
+                  </sc-if>
+                  <sc-if value="{{ p.payingLabel }}" hint-placeholder-val="{{ false }}">
+                    <span style="padding:3px 10px;border-radius:999px;background:{{ p.payingBg }};color:{{ p.payingFg }};font-size:13px;font-weight:700;white-space:nowrap">{{ p.payingLabel }}</span>
+                  </sc-if>
+                  <sc-if value="{{ p.spareroomUrl }}" hint-placeholder-val="{{ false }}">
+                    <a href="{{ p.spareroomUrl }}" target="_blank" rel="noopener" style="margin-left:auto;font-weight:600;color:#454c66;white-space:nowrap" style-hover="color:#1d2d63">SpareRoom ↗</a>
+                  </sc-if>
+                </div>
+              </sc-if>
+              <a href="{{ p.href }}" style="margin-top:20px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#1d2d63;color:#fff;font-size:15px;font-weight:700" style-hover="background:#2b3f80;color:#fff">View property</a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <sc-if value="{{ notice }}" hint-placeholder-val="{{ false }}">
+        <p style="font-size:17px;margin:0;padding:32px;border-radius:24px;background:#fff">{{ notice }}</p>
+      </sc-if>
+    </section>
+  </sc-if>
+
+  <sc-if value="{{ isMap }}" hint-placeholder-val="{{ false }}">
+    <section style="padding:24px clamp(20px,5vw,72px) 96px;max-width:1400px;width:100%;margin:0 auto">
+      <div style="position:relative;height:max(560px,calc(100vh - 220px));border-radius:28px;overflow:hidden;background:#eee8dc;isolation:isolate">
+        <div id="listings-map" class="tls-map" style="position:absolute;inset:0;z-index:0"></div>
+        <sc-if value="{{ mapNotice }}" hint-placeholder-val="{{ false }}">
+          <p style="position:absolute;left:50%;top:50%;z-index:5;transform:translate(-50%,-50%);width:max-content;max-width:calc(100% - 40px);margin:0;padding:16px 22px;border-radius:18px;background:#fff;font-size:16px;text-align:center;pointer-events:none;box-shadow:0 8px 24px rgba(27,35,64,0.14)">{{ mapNotice }}</p>
+        </sc-if>
+        <sc-if value="{{ hasSelected }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:16px;top:16px;z-index:10;width:min(340px,calc(100% - 32px));border-radius:24px;overflow:hidden;background:#fff;box-shadow:0 20px 48px rgba(27,35,64,0.22)">
+            <div style="position:relative;aspect-ratio:16/9;background:#efe7d8">
+              <image-slot id="{{ sel.slotId }}" src="{{ sel.photo }}" shape="rect" placeholder="Property photo"></image-slot>
+            </div>
+            <div style="padding:16px 20px 20px">
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 12px">
+                <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:22px;color:#1d2d63;white-space:nowrap">{{ sel.priceLabel }}</span>
+                <span style="padding:4px 10px;border-radius:999px;background:#fbf1d9;color:#7a5a12;font-size:13px;font-weight:700;white-space:nowrap">{{ sel.status }}</span>
+              </div>
+              <p style="font-size:16px;font-weight:600;margin:6px 0 0">{{ sel.title }}</p>
+              <p style="font-size:14px;margin:2px 0 0;color:#6b7190">{{ sel.summary }}</p>
+              <sc-if value="{{ sel.staff }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:12px;padding-top:12px;border-top:1px dashed #e3e1da;font-size:14px">
+                  <sc-if value="{{ sel.landlordUrl }}" hint-placeholder-val="{{ false }}">
+                    <a href="{{ sel.landlordUrl }}" target="_blank" rel="noopener" title="Open this landlord in Harbor Ops" style="font-weight:700;color:#1d2d63;overflow-wrap:anywhere" style-hover="color:#b8841c">{{ sel.landlordLabel }}</a>
+                  </sc-if>
+                  <sc-if value="{{ sel.noLandlord }}" hint-placeholder-val="{{ false }}">
+                    <span style="color:#6b7190">No landlord linked</span>
+                  </sc-if>
+                  <sc-if value="{{ sel.payingLabel }}" hint-placeholder-val="{{ false }}">
+                    <span style="padding:3px 10px;border-radius:999px;background:{{ sel.payingBg }};color:{{ sel.payingFg }};font-size:13px;font-weight:700;white-space:nowrap">{{ sel.payingLabel }}</span>
+                  </sc-if>
+                  <sc-if value="{{ sel.spareroomUrl }}" hint-placeholder-val="{{ false }}">
+                    <a href="{{ sel.spareroomUrl }}" target="_blank" rel="noopener" style="margin-left:auto;font-weight:600;color:#454c66;white-space:nowrap" style-hover="color:#1d2d63">SpareRoom ↗</a>
+                  </sc-if>
+                </div>
+              </sc-if>
+              <div style="display:flex;gap:8px;margin-top:16px">
+                <a href="{{ sel.href }}" style="flex:1;height:44px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:#1d2d63;color:#fff;font-size:15px;font-weight:700;white-space:nowrap" style-hover="background:#2b3f80;color:#fff">View property</a>
+                <button type="button" onClick="{{ closeSel }}" style="height:44px;padding:0 18px;border:0;border-radius:999px;background:#f3efe6;color:#1b2340;font-size:15px;font-weight:600;cursor:pointer" style-hover="background:#e9e3d6">Close</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+  </sc-if>
+
+  <section id="why" style="background:#fff">
+    <div style="padding:96px clamp(20px,5vw,72px);max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:56px;align-items:center">
+      <div style="position:relative;aspect-ratio:4/5;border-radius:28px;overflow:hidden;background:#efe7d8;max-height:620px">
+        <image-slot id="why-photo" src="assets/keys-handover.jpg" shape="rect" placeholder="Photo: your team handing over keys"></image-slot>
+      </div>
+      <div>
+        <span style="display:inline-flex;padding:6px 14px;border-radius:999px;background:#fbf1d9;color:#7a5a12;font-size:14px;font-weight:600">Why choose us</span>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(32px,3.6vw,48px);line-height:1.08;letter-spacing:-0.02em;margin:18px 0 0;color:#1d2d63;max-width:18ch">Letting that feels looked after.</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px 32px;margin-top:40px">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="width:40px;height:40px;border-radius:12px;background:#1d2d63;color:#e0ac36;display:grid;place-items:center;font-weight:700">1</span>
+            <h3 style="font-size:19px;font-weight:700;margin:8px 0 0">Every home checked</h3>
+            <p style="font-size:16px;line-height:26px;margin:0;color:#454c66">Gas, electrical and EPC certificates are in place before a property goes live.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="width:40px;height:40px;border-radius:12px;background:#1d2d63;color:#e0ac36;display:grid;place-items:center;font-weight:700">2</span>
+            <h3 style="font-size:19px;font-weight:700;margin:8px 0 0">Clear costs</h3>
+            <p style="font-size:16px;line-height:26px;margin:0;color:#454c66">Rent, deposit and what's included are shown up front. No admin fees for tenants.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="width:40px;height:40px;border-radius:12px;background:#1d2d63;color:#e0ac36;display:grid;place-items:center;font-weight:700">3</span>
+            <h3 style="font-size:19px;font-weight:700;margin:8px 0 0">Deposits protected</h3>
+            <p style="font-size:16px;line-height:26px;margin:0;color:#454c66">Every deposit is registered with a government-approved protection scheme.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span style="width:40px;height:40px;border-radius:12px;background:#1d2d63;color:#e0ac36;display:grid;place-items:center;font-weight:700">4</span>
+            <h3 style="font-size:19px;font-weight:700;margin:8px 0 0">Repairs handled</h3>
+            <p style="font-size:16px;line-height:26px;margin:0;color:#454c66">Report an issue any time and a named property manager follows it through.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:32px clamp(20px,5vw,72px);display:flex;flex-wrap:wrap;gap:12px 32px;font-size:14px;color:#6b7190;max-width:1400px;width:100%;margin:0 auto">
+    <span>© Trusted Let Solutions</span>
+    <span style="margin-left:auto">Members of a government-approved redress scheme</span>
+  </footer>
+  <dc-import name="Enquiry" hint-size="0,0" open="{{ enquiryOpen }}" on-close="{{ closeEnquiry }}"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// Listings come from listings.json, a daily snapshot of the Harbor Ops Property API
+// written by scripts/fetch-listings.mjs. Each one is a property with rooms to let:
+// { id, title, location, type, rooms, priceMin, priceMax, bills, availableDate, photo, lat, lng }
+// Agency staff signed in from Harbor Ops (see server.mjs) also get /staff/listings.json, which adds
+// { landlordName, landlordUrl, paying, spareroomUrl, ref } by id. Signed out it is a 401 and the page stays public.
+const ROOMS = [['any','Any'],['1','1'],['2','2'],['3','3+']];
+const TODAY = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+const isNow = h => !h.availableDate || h.availableDate <= TODAY;
+// An available room typed "ensuite", or the title says so. Descriptions aren't used: they often mention
+// another room's en-suite ("plus one ensuite room in the house").
+const hasEnsuite = h => (h.roomList || []).some(r => /^ensuite$/i.test(r.type || '')) || /en-?suite/i.test(h.title || '');
+const NO_FILTERS = { rooms: 'any', minPrice: '0', maxPrice: '99999', type: 'all', avail: 'any', bills: false, couples: false, ensuite: false, paying: 'any' };
+// Staff only: whether the landlord pays commission, shown next to their name.
+const PAYING_TAG = { yes: { label: 'Paying', bg: '#fbf1d9', fg: '#7a5a12' }, no: { label: 'Not paying', bg: '#f3efe6', fg: '#454c66' } };
+const payingTag = h => h.paying === true ? PAYING_TAG.yes : h.paying === false ? PAYING_TAG.no : {};
+// Staff details, or null when signed out (401) or no server is in front of the site (404).
+const loadStaff = () => fetch('./staff/listings.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null);
+const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
+const fmtDate = d => new Date(d + 'T00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+const CALL_US = 'Call us on 020 0000 0000 or email hello@trustedlet.co.uk.';
+// Groups nearby map pins into numbered bubbles. Loaded from code because it needs Leaflet first,
+// and helmet scripts can arrive in any order.
+const CLUSTER_JS = { src: 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js',
+  integrity: 'sha256-Hk4dIpcqOSb0hZjgyvFOP+cEmDXUKKNE/tT542ZbNQg=' };
+
+class Component extends DCLogic {
+  state = { view: localStorage.getItem('tls-view') || 'list', ...NO_FILTERS, selected: null,
+    listings: [], loading: true, error: false, enquiryOpen: false, staff: false };
+
+  componentDidMount() {
+    const staff = loadStaff();
+    fetch('./listings.json', { cache: 'no-cache' })
+      .then(r => { if (!r.ok) throw new Error('listings.json: HTTP ' + r.status); return r.json(); })
+      .then(j => staff.then(st => this.setState({ staff: !!st, loading: false,
+        listings: (j.listings || []).map(h => st ? { ...h, ...(st.listings || {})[h.id] } : h) })))
+      .catch(err => { console.error(err); this.setState({ error: true, loading: false }); });
+    this.syncMap();
+  }
+  componentDidUpdate() { this.syncMap(); }
+  componentWillUnmount() { clearInterval(this.waitForLeaflet); if (this.map) this.map.remove(); }
+
+  // Keeps the Leaflet map in #listings-map in step with the Map view, the filters and the selected listing.
+  // Leaflet loads asynchronously from the helmet and the cluster plugin after it, so wait for both the first
+  // time; if the plugin hasn't arrived 5 s after asking for it, carry on with plain pins.
+  syncMap() {
+    const el = document.getElementById('listings-map');
+    if (this.map && this.map.getContainer() !== el) { this.map.remove(); this.map = null; } // left the Map view
+    if (!el) return;
+    if (window.L && !L.markerClusterGroup && !this.clusterAskedAt) {
+      this.clusterAskedAt = Date.now();
+      const js = Object.assign(document.createElement('script'), { src: CLUSTER_JS.src, integrity: CLUSTER_JS.integrity, crossOrigin: '' });
+      document.head.appendChild(js);
+    }
+    const ready = () => window.L && (L.markerClusterGroup || Date.now() - this.clusterAskedAt > 5000);
+    if (!ready()) {
+      if (!this.waitForLeaflet) this.waitForLeaflet = setInterval(() => {
+        if (window.L && !this.clusterAskedAt || ready()) { clearInterval(this.waitForLeaflet); this.waitForLeaflet = null; this.syncMap(); }
+      }, 150);
+      return;
+    }
+    if (!this.map) {
+      // Scroll-wheel zoom only once the map has focus, so scrolling the page over it still scrolls the page.
+      this.map = L.map(el, { zoomControl: false, scrollWheelZoom: false }).setView([51.507, -0.128], 11);
+      L.control.zoom({ position: 'topright' }).addTo(this.map);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(this.map);
+      this.map.on('focus', () => this.map.scrollWheelZoom.enable());
+      this.map.on('blur', () => this.map.scrollWheelZoom.disable());
+      this.map.on('click', () => this.setState({ selected: null }));
+      this.pinLayer = (L.markerClusterGroup ? L.markerClusterGroup({
+        showCoverageOnHover: false, maxClusterRadius: 48,
+        iconCreateFunction: c => L.divIcon({ className: 'tls-pin-wrap', html: '<span class="tls-cluster">' + c.getChildCount() + '</span>', iconSize: [0, 0] })
+      }) : L.layerGroup()).addTo(this.map);
+      this.pinKey = this.boundsKey = null;
+    }
+    const s = this.state, pins = this.filtered().filter(h => h.lat != null && h.lng != null);
+    const ids = pins.map(h => h.id).join();
+    if (ids + '|' + s.selected !== this.pinKey) {
+      this.pinKey = ids + '|' + s.selected;
+      this.pinLayer.clearLayers();
+      for (const h of pins) {
+        const sel = h.id === s.selected, label = h.priceMin == null ? 'View' : gbp(h.priceMin);
+        L.marker([h.lat, h.lng], {
+          icon: L.divIcon({ className: 'tls-pin-wrap', html: '<span class="tls-pin' + (sel ? ' is-selected' : '') + '">' + label + '</span>', iconSize: [0, 0] }),
+          title: h.title, zIndexOffset: sel ? 1000 : 0, riseOnHover: true
+        }).on('click', () => this.selectPin(h)).addTo(this.pinLayer);
+      }
+    }
+    if (ids !== this.boundsKey && pins.length) {
+      this.boundsKey = ids;
+      // Frame the main group: if 80% of pins are within 30 km of the median point, fit to those so one far-off
+      // listing doesn't zoom the map out to half of England (it is still there when zoomed out).
+      const median = xs => xs.slice().sort((a, b) => a - b)[xs.length >> 1];
+      const mid = L.latLng(median(pins.map(h => h.lat)), median(pins.map(h => h.lng)));
+      const near = pins.filter(h => mid.distanceTo([h.lat, h.lng]) < 30000);
+      const frame = near.length >= pins.length * 0.8 ? near : pins;
+      this.map.fitBounds(frame.map(h => [h.lat, h.lng]), { padding: [56, 56], maxZoom: 15 });
+    }
+  }
+  // Select a pin and nudge the map so the card in the top-left corner doesn't cover it.
+  selectPin(h) {
+    this.setState({ selected: h.id });
+    const wide = this.map.getSize().x > 700;
+    this.map.panInside([h.lat, h.lng], { paddingTopLeft: wide ? [380, 60] : [40, 420], paddingBottomRight: [40, 40] });
+  }
+
+  filtered() {
+    const s = this.state;
+    return s.listings.filter(h =>
+      (s.rooms === 'any' || (s.rooms === '3' ? h.rooms >= 3 : h.rooms === +s.rooms)) &&
+      (h.priceMin ?? 0) >= +s.minPrice && (h.priceMin ?? 0) <= +s.maxPrice &&
+      (s.type === 'all' || h.type === s.type) &&
+      (!s.bills || h.bills) &&
+      (!s.couples || h.couplesOk === true) &&
+      (!s.ensuite || hasEnsuite(h)) &&
+      (s.paying === 'any' || h.paying === (s.paying === 'yes')) &&
+      (s.avail === 'any' || isNow(h) || (s.avail !== 'now' && h.availableDate <= s.avail)));
+  }
+  setView(view) { localStorage.setItem('tls-view', view); this.setState({ view, selected: null }); }
+
+  renderVals() {
+    const s = this.state, isList = s.view === 'list';
+    const on = { bg: '#1d2d63', fg: '#fff' }, off = { bg: 'transparent', fg: '#454c66' };
+    const decorate = h => {
+      const roomsLabel = h.rooms ? h.rooms + (h.rooms === 1 ? ' room' : ' rooms') : '';
+      const billsLabel = h.bills ? 'Bills incl.' : 'Bills extra';
+      const tag = payingTag(h);
+      return { ...h, hasPin: h.lat != null && h.lng != null, slotId: 'listing-' + h.id, photo: h.photo || '', href: 'Listing.dc.html?id=' + encodeURIComponent(h.id),
+        staff: s.staff, landlordUrl: h.landlordUrl || '', landlordLabel: (h.landlordName || 'Landlord') + ' ↗', noLandlord: !h.landlordUrl,
+        payingLabel: tag.label || '', payingBg: tag.bg, payingFg: tag.fg, spareroomUrl: h.spareroomUrl || '',
+        priceLabel: h.priceMin == null ? 'Rent on request' : (h.priceMax > h.priceMin ? 'From ' : '') + gbp(h.priceMin) + ' pcm',
+        roomsLabel, billsLabel, summary: [h.location, roomsLabel, billsLabel].filter(Boolean).join(' · '),
+        status: isNow(h) ? 'Available now' : 'From ' + fmtDate(h.availableDate) };
+    };
+    const results = this.filtered().map(decorate);
+    const pins = results.filter(r => r.hasPin);
+    const selH = pins.find(r => r.id === s.selected);
+    const nowCount = s.listings.filter(isNow).length;
+    const types = [...new Set(s.listings.map(h => h.type).filter(Boolean))].sort();
+    const notice = s.error ? "We couldn't load listings right now. " + CALL_US
+      : s.loading || results.length ? null
+      : s.listings.length ? 'No rooms match those filters. Try removing one, or clear them all.'
+      : 'No rooms are listed right now. ' + CALL_US;
+    return {
+      isList, isMap: !isList, results, notice,
+      mapNotice: notice || (results.length && !pins.length ? 'These rooms have no map location yet. Switch to List to see them.' : null),
+      heroCount: s.loading ? 'Loading rooms…' : s.error ? 'Call us for rooms available now' : nowCount + (nowCount === 1 ? ' property' : ' properties') + ' available now',
+      countLabel: s.loading ? 'Loading rooms…' : s.error ? '' : results.length + (results.length === 1 ? ' property' : ' properties'),
+      goList: () => this.setView('list'), goMap: () => this.setView('map'),
+      enquiryOpen: s.enquiryOpen, openEnquiry: () => this.setState({ enquiryOpen: true }), closeEnquiry: () => this.setState({ enquiryOpen: false }),
+      listSegBg: (isList ? on : off).bg, listSegFg: (isList ? on : off).fg,
+      mapSegBg: (isList ? off : on).bg, mapSegFg: (isList ? off : on).fg,
+      roomOpts: ROOMS.map(([v, label]) => ({ label, pressed: s.rooms === v, bg: (s.rooms === v ? on : off).bg, fg: (s.rooms === v ? on : off).fg, pick: () => this.setState({ rooms: v }) })),
+      typeOptions: [['all', 'All types'], ...types.map(t => [t, t])].map(([v, label]) => React.createElement('option', { key: v, value: v }, label)),
+      minPrice: s.minPrice, setMin: e => this.setState({ minPrice: e.target.value }),
+      maxPrice: s.maxPrice, setMax: e => this.setState({ maxPrice: e.target.value }),
+      type: s.type, setType: e => this.setState({ type: e.target.value }),
+      avail: s.avail, setAvail: e => this.setState({ avail: e.target.value }),
+      staff: s.staff, paying: s.paying, setPaying: e => this.setState({ paying: e.target.value }),
+      toggles: [['bills', 'Bills included'], ['couples', 'Couples welcome'], ['ensuite', 'En-suite']].map(([key, label]) => ({
+        label, pressed: s[key], toggle: () => this.setState({ [key]: !s[key] }),
+        bg: s[key] ? '#e0ac36' : '#fff', border: s[key] ? '#e0ac36' : '#e3e1da' })),
+      filtersActive: Object.keys(NO_FILTERS).some(k => s[k] !== NO_FILTERS[k]),
+      clearFilters: () => this.setState({ ...NO_FILTERS }),
+      hasSelected: !!selH && !isList, sel: selH || {},
+      closeSel: () => this.setState({ selected: null })
+    };
+  }
+}
+</script>
+</body>
+</html>
