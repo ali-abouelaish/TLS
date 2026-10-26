@@ -304,7 +304,7 @@ const payingTag = h => h.paying === true ? PAYING_TAG.yes : h.paying === false ?
 const loadStaff = () => fetch('./staff/listings.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : null).catch(() => null);
 const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
 const fmtDate = d => new Date(d + 'T00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
-const CALL_US = 'Call us on 020 0000 0000 or email hello@trustedlet.co.uk.';
+const CONTACT_US = "Send us an enquiry and we'll get back to you.";
 // Groups nearby map pins into numbered bubbles. Loaded from code because it needs Leaflet first,
 // and helmet scripts can arrive in any order.
 const CLUSTER_JS = { src: 'https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js',
@@ -425,14 +425,14 @@ class Component extends DCLogic {
     const selH = pins.find(r => r.id === s.selected);
     const nowCount = s.listings.filter(isNow).length;
     const types = [...new Set(s.listings.map(h => h.type).filter(Boolean))].sort();
-    const notice = s.error ? "We couldn't load listings right now. " + CALL_US
+    const notice = s.error ? "We couldn't load listings right now. " + CONTACT_US
       : s.loading || results.length ? null
       : s.listings.length ? 'No rooms match those filters. Try removing one, or clear them all.'
-      : 'No rooms are listed right now. ' + CALL_US;
+      : 'No rooms are listed right now. ' + CONTACT_US;
     return {
       isList, isMap: !isList, results, notice,
       mapNotice: notice || (results.length && !pins.length ? 'These rooms have no map location yet. Switch to List to see them.' : null),
-      heroCount: s.loading ? 'Loading rooms…' : s.error ? 'Call us for rooms available now' : nowCount + (nowCount === 1 ? ' property' : ' properties') + ' available now',
+      heroCount: s.loading ? 'Loading rooms…' : s.error ? 'Ask us about rooms available now' : nowCount + (nowCount === 1 ? ' property' : ' properties') + ' available now',
       countLabel: s.loading ? 'Loading rooms…' : s.error ? '' : results.length + (results.length === 1 ? ' property' : ' properties'),
       goList: () => this.setView('list'), goMap: () => this.setView('map'),
       enquiryOpen: s.enquiryOpen, openEnquiry: () => this.setState({ enquiryOpen: true }), closeEnquiry: () => this.setState({ enquiryOpen: false }),

@@ -109,9 +109,7 @@ button,select{font-family:inherit}
               </div>
             </sc-for>
           </dl>
-          <button type="button" onClick="{{ openProperty }}" style="display:flex;align-items:center;justify-content:center;width:100%;margin-top:20px;height:50px;border:0;border-radius:999px;background:#e0ac36;color:#1b2340;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>
-          <a href="{{ telHref }}" style="display:flex;align-items:center;justify-content:center;margin-top:10px;height:50px;border-radius:999px;background:#fff;color:#1d2d63;font-size:16px;font-weight:700;box-shadow:inset 0 0 0 1.5px #d9dcea" style-hover="box-shadow:inset 0 0 0 1.5px #1d2d63;color:#1d2d63">{{ callLabel }}</a>
-          <sc-if value="{{ staff }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ openProperty }}" style="display:flex;align-items:center;justify-content:center;width:100%;margin-top:20px;height:50px;border:0;border-radius:999px;background:#e0ac36;color:#1b2340;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#ebc161" style-active="background:#c99526">Book a viewing</button>          <sc-if value="{{ staff }}" hint-placeholder-val="{{ false }}">
             <div style="margin-top:22px;padding-top:16px;border-top:1px dashed #e3e1da">
               <span style="display:block;font-size:13px;font-weight:600;color:#6b7190">Staff only</span>
               <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px">
@@ -198,8 +196,7 @@ button,select{font-family:inherit}
 // One listing from listings.json (see scripts/fetch-listings.mjs), picked by ?id=. Agency staff signed in
 // from Harbor Ops (see server.mjs) also get its landlord, paying flag and SpareRoom link and ref from
 // /staff/listings.json. Public enquiries send the listing id as their ref instead.
-const PHONE = '020 0000 0000', EMAIL = 'hello@trustedlet.co.uk';
-const CALL_US = 'Call us on ' + PHONE + ' or email ' + EMAIL + '.';
+const CONTACT_US = "Send us an enquiry and we'll get back to you.";
 const TODAY = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 const gbp = n => '£' + Math.round(n).toLocaleString('en-GB');
 const fmtDate = d => new Date(d + 'T00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
@@ -253,15 +250,14 @@ class Component extends DCLogic {
 
   renderVals() {
     const s = this.state, h = s.listing;
-    const telHref = 'tel:' + PHONE.replace(/\s/g, ''), callLabel = 'Call ' + PHONE;
     const enquiry = {
       enquiryOpen: !!s.enquiry, closeEnquiry: () => this.setState({ enquiry: null }),
       openGeneral: () => this.setState({ enquiry: 'general' }), openProperty: () => this.setState({ enquiry: 'property' })
     };
     if (!h) return {
-      found: false, telHref, callLabel, ...enquiry,
-      notice: s.loading ? null : s.error ? "We couldn't load this listing right now. " + CALL_US
-        : 'This room has been let or is no longer listed. Browse the rooms we have available now, or ' + CALL_US[0].toLowerCase() + CALL_US.slice(1)
+      found: false, ...enquiry,
+      notice: s.loading ? null : s.error ? "We couldn't load this listing right now. " + CONTACT_US
+        : 'This room has been let or is no longer listed. Browse the rooms we have available now, or ' + CONTACT_US[0].toLowerCase() + CONTACT_US.slice(1)
     };
 
     const photos = h.photos && h.photos.length ? h.photos : h.photo ? [h.photo] : [];
@@ -286,13 +282,13 @@ class Component extends DCLogic {
     ]);
     const tag = payingTag(h);
     return {
-      found: true, notice: null, telHref, callLabel, ...enquiry,
+      found: true, notice: null, ...enquiry,
       staff: s.staff, landlordUrl: h.landlordUrl || '', landlordLabel: (h.landlordName || 'Landlord') + ' ↗', noLandlord: !h.landlordUrl,
       payingLabel: tag.label || '', payingBg: tag.bg, payingFg: tag.fg, spareroomUrl: h.spareroomUrl || '',
       // The popup carries this listing's details only when opened from the listing itself, not from the nav.
       ...(s.enquiry === 'property' ? { enqProperty: h.title, enqRef: h.ref || h.id, enqUrl: location.href,
         enqPhoto: photos[0] || '', enqSpareroom: h.spareroomUrl || '' } : {}),
-      bookIntro: "Tell us when suits you and we'll get back to you to confirm a time. Prefer to talk? Call us on " + PHONE.replace(/ /g, ' ') + '.',
+      bookIntro: "Tell us when suits you and we'll get back to you to confirm a time.",
       title: h.title, location: h.location, bills: h.bills,
       status: now ? 'Available now' : 'From ' + fmtDate(h.availableDate),
       priceLabel: h.priceMin == null ? 'Rent on request' : (h.priceMax > h.priceMin ? 'From ' : '') + gbp(h.priceMin) + ' pcm',

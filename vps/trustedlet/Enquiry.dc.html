@@ -78,19 +78,18 @@
 <script type="text/x-dc" data-dc-script>
 // "Book a viewing" popup. Props: open, on-close, and for a listing: property (title), property-ref,
 // property-url (our listing page), property-photo and spareroom-url. Without property it is a general enquiry.
-const PHONE = '020 0000 0000', EMAIL = 'hello@trustedlet.co.uk';
 const TODAY = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 const fmtDate = d => new Date(d + 'T00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const FOCUSABLE = '[data-enq-dialog] :is(a[href], button, input, textarea):not([disabled]):not([tabindex="-1"])';
 
 // Harbor Ops Leads key for this website (Leads → Settings → Website enquiries → Connect a website,
 // "Developer API" tab). It can only add enquiries, so it is safe in page code. While it is empty,
-// enquiries open in the visitor's email app instead.
+// enquiries can't be sent.
 const LEADS_KEY = '';
 const LEADS_URL = 'https://harborops.co.uk/api/public/leads';
 
-function sendLead(lead, property) {
-  if (!LEADS_KEY) return emailLead(lead, property);
+function sendLead(lead) {
+  if (!LEADS_KEY) return Promise.reject(new Error('Harbor Ops leads: no LEADS_KEY set'));
   const abort = new AbortController(), timer = setTimeout(() => abort.abort(), 15000);
   return fetch(LEADS_URL, {
     method: 'POST', signal: abort.signal,
@@ -101,14 +100,6 @@ function sendLead(lead, property) {
     const body = await r.json().catch(() => ({}));
     throw new Error('Harbor Ops leads: HTTP ' + r.status + ' ' + (body.message || body.error || ''));
   }).finally(() => clearTimeout(timer));
-}
-
-function emailLead(lead, property) {
-  const subject = property ? 'Viewing request: ' + property : 'Website enquiry';
-  const body = [['Name', lead.name], ['Email', lead.email], ['Phone', lead.phone], ['Link', lead.page_url], ['Message', lead.message]]
-    .filter(([, v]) => v).map(([label, v]) => label + ': ' + v).join('\n');
-  location.href = 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-  return Promise.resolve({ via: 'email' });
 }
 
 const newId = () => 'tls-' + (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2));
@@ -173,9 +164,9 @@ class Component extends DCLogic {
       external_id: this.externalId
     };
     this.setState({ status: 'sending', error: null });
-    sendLead(lead, p.property).then(
+    sendLead(lead).then(
       r => { this.externalId = null; this.setState({ status: 'sent', via: r.via, firstName: lead.name.split(/\s+/)[0] }); },
-      err => { console.error(err); this.setState({ status: 'idle', error: "Sorry, your enquiry didn't send. Please try again, or call us on " + PHONE + ' or email ' + EMAIL + '.' }); });
+      err => { console.error(err); this.setState({ status: 'idle', error: "Sorry, your enquiry didn't send. Please try again." }); });
   }
 
   renderVals() {
@@ -192,10 +183,8 @@ class Component extends DCLogic {
       defaultMessage: p.property ? "Hi, I'd like to book a viewing. Times that suit me: " : '',
       messageHint: p.property ? '' : 'Area, budget, number of rooms, anything else we should know…',
       submitLabel: s.status === 'sending' ? 'Sending…' : 'Request a viewing',
-      sentTitle: s.via === 'email' ? 'Nearly there' : 'Thanks' + (s.firstName ? ', ' + s.firstName : '') + '.',
-      sentText: s.via === 'email'
-        ? "Your email app should have opened with your enquiry filled in. Press send there and we'll reply soon. If nothing opened, email " + EMAIL + ' or call ' + PHONE + '.'
-        : "We've got your enquiry and will be in touch shortly."
+      sentTitle: 'Thanks' + (s.firstName ? ', ' + s.firstName : '') + '.',
+      sentText: "We've got your enquiry and will be in touch shortly."
     };
   }
 }
