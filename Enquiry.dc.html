@@ -50,10 +50,10 @@
             <input name="name" data-enq-autofocus="" required="{{ true }}" sc-camel-auto-complete="name" sc-camel-max-length="120" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
           </label>
           <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Email
-            <input name="email" type="email" sc-camel-auto-complete="email" sc-camel-max-length="200" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
+            <input name="email" type="email" required="{{ true }}" sc-camel-auto-complete="email" sc-camel-max-length="200" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
           </label>
           <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Phone
-            <input name="phone" type="tel" sc-camel-auto-complete="tel" sc-camel-max-length="40" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
+            <input name="phone" type="tel" required="{{ true }}" sc-camel-auto-complete="tel" sc-camel-max-length="40" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
           </label>
           <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:#6b7190">Ideal move-in date (optional)
             <input name="move_in_date" type="date" min="{{ today }}" style="height:48px;padding:0 14px;border-radius:12px;border:1.5px solid #e3e1da;background:#faf6ef;color:#1b2340;font:inherit;font-size:16px;font-weight:400">
@@ -68,7 +68,7 @@
             <p role="alert" style="grid-column:1/-1;margin:0;padding:12px 16px;border-radius:12px;background:#fdecea;color:#8a1c12;font-size:15px">{{ error }}</p>
           </sc-if>
           <button type="submit" disabled="{{ sending }}" style="grid-column:1/-1;height:52px;border:0;border-radius:999px;background:#e0ac36;color:#1b2340;font-size:16px;font-weight:700;cursor:pointer" style-hover="background:#ebc161" style-active="background:#c99526">{{ submitLabel }}</button>
-          <p style="grid-column:1/-1;margin:-4px 0 0;font-size:13px;color:#6b7190">We'll only use these details to reply to your enquiry. Please give an email address or a phone number.</p>
+          <p style="grid-column:1/-1;margin:-4px 0 0;font-size:13px;color:#6b7190">We'll only use these details to reply to your enquiry. Please give both an email address and a phone number.</p>
         </form>
       </sc-if>
     </div>
@@ -151,7 +151,7 @@ class Component extends DCLogic {
     e.preventDefault();
     const form = new FormData(e.target), v = k => String(form.get(k) || '').trim(), p = this.props;
     if (v('website')) return this.setState({ status: 'sent', via: null }); // hidden field: only bots fill it in
-    if (!v('email') && !v('phone')) return this.setState({ error: 'Please add an email address or a phone number so we can reply.' });
+    if (!v('email') || !v('phone')) return this.setState({ error: 'Please add both your email address and your phone number so we can arrange the viewing.' });
     this.externalId = this.externalId || newId();
     // Harbor Ops recognises name, email, phone and message; the rest goes in the message.
     const about = p.property && ['Property: ' + p.property, p.propertyRef && 'Ref: ' + p.propertyRef, p.spareroomUrl && 'SpareRoom: ' + p.spareroomUrl]
